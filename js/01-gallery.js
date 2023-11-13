@@ -10,8 +10,8 @@ container.addEventListener('click', onClick);
 
 function createGalItMarkup (items) {
     return items
-        .map(({ original, preview, description }) => {
-        return `<li class="gallery__item">
+        .map(({ original, preview, description }) =>
+        `<li class="gallery__item">
         <a class="galllery__link" href="${original}">
         <img
          class="gallery__image"
@@ -21,21 +21,20 @@ function createGalItMarkup (items) {
         />
  </a>
 </li>`
-        })
-        .join(''); 
+        )
+        .join('')
 }
 
 function onClick (evt) {
     evt.preventDefault();
 
-    if (evt.target.nodeName !== "IMG") return;
+    // if (evt.target.nodeName !== "IMG") return;
     const isImg = evt.target.classList.contains('gallery__image');
     if (!isImg) return;
     
-    const cuurentImg = evt.target.dataset.source;
+    const currentImg = evt.target.dataset.source;
 
-    const instance = basicLightbox.create(` 
-     <img width="1280" src="${cuurentImg}" />`,
+    const instance = basicLightbox.create(`<img src="${currentImg}" width="1280" height="auto"/>`,
         {
             onShow: (instance) => {
                 window.addEventListener('keydown', onEscPress);
@@ -53,8 +52,9 @@ function onClick (evt) {
     if (isEsc) return;
     instance.close();
 }
-    }
+}
+    
 
-// instance.show();
+
 
 // console.log(galleryItems);
