@@ -16,7 +16,7 @@ function createGalItMarkup (items) {
         <img
          class="gallery__image"
          src="${preview}"
-         data-source="${original}
+         data-source="${original}"
          alt="${description}"
         />
  </a>
