@@ -25,7 +25,7 @@ function createGalItMarkup (items) {
         .join('')
 }
 
-function onClick (evt) {
+function onClick(evt) {
     evt.preventDefault();
 
     // if (evt.target.nodeName !== "IMG") return;
@@ -35,25 +35,18 @@ function onClick (evt) {
     const currentImg = evt.target.dataset.source;
 
     const instance = basicLightbox.create(`<img src="${currentImg}" width="1280" height="auto"/>`,
-        {
-            onShow: (instance) => {
-                window.addEventListener('keydown', onEscPress);
-            },
-            onClose: (instance) => {
-                window.removeEventListener('keydown', onEscPress);
-            },
-        }
     );
+
     instance.show();
+    window.addEventListener('keydown', onEscPress);
     
     function onEscPress(evt) {
-        const ESC = 'Escape';
-        const isEsc = evt.code === ESC;
-    if (isEsc) return;
-    instance.close();
+         if (evt.key === "Escape") {
+            instance.close();
+            window.removeEventListener('keydown', onEscPress);
+        }
+    }
 }
-}
-    
 
 
 
